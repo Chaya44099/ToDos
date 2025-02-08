@@ -2,15 +2,15 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:5110';
 
-// axios.interceptors.response.use(
-//   response => response,
-//   error => {
-//     console.error('API Error:', error.response ? error.response.data : error.message);
-//     return Promise.reject(error);
-//   }
-// );
+axios.interceptors.response.use(
+  response => response,
+  error => {
+    console.error('API Error:', error.response ? error.response.data : error.message);
+    return Promise.reject(error);
+  }
+);
 
-export default {
+const myService =  {
   getTasks: async () => {
     const result = await axios.get('/tasks')    
     return result.data;
@@ -36,3 +36,4 @@ export default {
     return result.data;
   }
 };
+export default myService;
